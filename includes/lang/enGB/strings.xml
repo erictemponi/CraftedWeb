@@ -1,0 +1,29 @@
+<!-- Attention! This project is not active. Modifying this wont affect your website at all -->
+<pagenames>
+          <home>Home</home>
+		  <myaccount>My Account</myaccount>
+		  <vote>Vote</vote>
+		  <donate>Donate</donate>
+		  <accountpanel>Account Panel</accountpanel>
+		  <changepass>Change Password</changepass>
+		  <latestnews>Latest News</latestnews>
+		  <voteshop>Vote Shop</voteshop>
+		  <donationshop>Donation Shop</donationshop>
+		  <raf>Refer-A-Friend</raf>
+		  <adminpanel>Admin Panel</adminpanel>
+		  <register>Register</register>
+		  <forgotpassword>Forgot Password</forgotpassword>
+		  <characterunstuck>Character Unstuck</characterunstuck>
+		  
+</pagenames>
+<titles>
+        <accountmanagement>Account Management</accountmanagement>
+		<serverstatus>Server Status</serverstatus>
+		<services>Services</services>
+		<characterservices>Character Services</characterservices>
+		<accountservices>Account Services</accountservices>
+		<settings>Settings</settings>
+		<unstuck>Unstuck</unstuck>
+		<revive>Revive</revive>
+		<teleport>Teleport</teleport>
+</titles>

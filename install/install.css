@@ -1,0 +1,152 @@
+::selection{ 
+	background-color: #23384b;
+	color: #42698a;
+	}
+::moz-selection{ 
+	background-color: #23384b;
+	color: #42698a;
+	}
+::webkit-selection{ 
+	background-color: #23384b;
+	color: #42698a;
+	}
+
+body { 
+	background: #17191e;
+	margin: 40px; 
+	font: 14px/20px normal Veranda, sans-serif;
+	color: #FFF;
+	}
+
+a {
+	color: #3f739f;
+	background-color: transparent;
+	font-weight: normal;
+    text-decoration: none;
+	}
+
+a:hover {
+    color: #FFF;
+    text-decoration: none;
+}
+
+h1 {
+	color: #0e86cb;
+	background-color: transparent;
+	border-bottom: 1px solid #42698a;
+	font-size: 19px;
+	font-weight: normal;
+	margin: 0 0 14px 0;
+	padding: 14px 15px 10px 15px;
+	}
+
+code {
+	font-family: Veranda, monospace;
+	font-size: 14px;
+	background-color: #17191e;
+	border: 1px solid #42698a;
+	color: #FFF;
+	display: block;
+	margin: 14px 0 14px 0;
+	padding: 12px 10px 12px 10px;
+	}
+
+#content{
+	margin: 0 15px 0 15px;
+	}
+	
+#main_box{
+	width: 950px; 
+	margin: 50px;
+	border: 1px solid #42698a;
+	-webkit-box-shadow: 0 0 1px #3a4b59;
+	-webkit-box-align:center; 
+	-moz-box-align:center;
+	}
+	
+hr { 
+	border-top: 1px solid #42698a;
+	border-bottom: none; 
+	border-left: none; 
+	border-right: none; 
+	}
+	
+#steps { font-size: 11px; }
+	
+input[type="submit"] { 
+	height: 32px; 
+	border:none; 
+	background-color: #192028;
+	padding-bottom: 5px; 
+	padding-left: 18px;  
+	padding-right: 18px; 
+	cursor:pointer; 
+	-moz-border-radius: 1px; 
+	border-radius: 1px;        
+	padding-top: 5px;
+	top: -4px; 
+	border: 1px solid #42698a;
+	font-family: 'Veranda';
+	color:#d8dfe4;
+	}
+input[type="submit"]:hover {
+    background-color:#2e4961;
+    color: #FFF;
+}
+
+ul{
+    margin:0;
+    padding:0 20px;
+}
+ul li    {
+    padding:0;
+    width:150px;
+    margin:10px 0;
+}
+
+label{
+    width: 120px;
+    color: #FFF;
+    font-size: 12px;
+}
+
+input{
+}
+
+input, textarea{
+    margin-bottom: 5px;
+    color: #FFF;
+    background-color: #2b3c50;
+    border:1px solid #42698a;
+    text-align: center;
+}
+
+textarea{
+    width: 250px;
+    height: 150px;
+}
+
+select{
+    margin: 0;
+}
+
+select, option{
+    color: #FFF;
+    background-color: #2b3c50;
+    border:1px solid #42698a;
+}
+
+fieldset{
+    color: #FFF;
+    border:1px solid #42698a;
+    width: 415px;
+    height: 315px;
+}
+
+.boxes{
+    width: 1em;
+}
+
+br{
+    clear: left;
+}
