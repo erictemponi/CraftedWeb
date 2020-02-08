@@ -148,9 +148,9 @@ function process_cart($cart, $charaID, $character, $accountID, $realm)
             }
         }
         if($cart == 'donate' And account::hasDP($_SESSION['cw_user'], $totalPrice) == FALSE)
-            die("Você não tem um número suficiente de {$GLOBALS['donation']['coins_name']}!");
+            die("Você não tem {$GLOBALS['donation']['coins_name']} suficientes!");
         else if($cart == 'vote' And account::hasVP($_SESSION['cw_user'], $totalPrice) == FALSE)
-            die("Você não tem um número suficiente de Pontos de Votação!");
+            die("Você não tem Pontos de Votação suficientes!");
 
         foreach ($items as $entry => $info)
         {
