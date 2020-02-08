@@ -11,7 +11,7 @@
 <?php if(isset($_SESSION['cw_user'])) { ?>
 <div class="box_one">
 <div class="box_one_title">Gerenciamento de Contas</div>
-<span style="z-index: 99;">Bem vindo(a) de volta  <?php echo $_SESSION['cw_user']; ?>
+<span style="z-index: 99;">Bem vindo(a) de volta,  <?php echo $_SESSION['cw_user']; ?>
 			<?php 
 			if (isset($_SESSION['cw_gmlevel']) && $_SESSION['cw_gmlevel']>=$GLOBALS['adminPanel_minlvl'] && $GLOBALS['adminPanel_enable']==true) 
 				echo ' <a href="admin/">(Painel do Administrador)</a>';
@@ -21,7 +21,7 @@
 			?>
             </span>
 			<hr/>
-            <input type='button' value='Painel de Conta' onclick='window.location="?p=account"' class="leftbtn">
+            <input type='button' value='Painel da Conta' onclick='window.location="?p=account"' class="leftbtn">
 			<input type='button' value='Alterar Senha'  onclick='window.location="?p=changepass"' class="leftbtn">
             <input type='button' value='Loja de Votação' onclick='window.location="?p=voteshop"' class="leftbtn">  
 			<input type='button' value='Loja de Doação'  onclick='window.location="?p=donateshop"' class="leftbtn">
