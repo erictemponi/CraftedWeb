@@ -46,9 +46,9 @@ if($GLOBALS['enableSlideShow']==true && $_GET['p'] == 'home')
 <?php 
 }
 if($GLOBALS['core_expansion']>2) 
-	echo '<script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>';
+	echo '<script type="text/javascript" src="https://static.wowhead.com/widgets/power.js"></script>';
 else
-	echo '<script type="text/javascript" src="http://cdn.openwow.com/api/tooltip.js"></script>';
+	echo '<script type="text/javascript" src="https://wotlkdb.com/static/widgets/power.js"></script>';
 
 ####CURSOR TRACKER####
 if($_GET['p']=='donateshop' || $_GET['p'] == 'voteshop') 
