@@ -26,7 +26,7 @@ else
 	{
 ?>
 <div class="box_two_title"><?php echo $service_title; ?></div>
-Escolha o personagem no qual você deseja aplicar este serviço para.
+Escolha o personagem no qual você deseja aplicar este serviço.
 <?php
 if($GLOBALS['service'][$service]['price']==0) 
       	echo '<span class="attention">'.$service_title.' é gratuito.</span>';
@@ -73,7 +73,7 @@ while($row = mysql_fetch_assoc($result))
                     " ".character::getClass($row['class']); ?>
                 </td>
                 
-                <td>Realm: <?php echo $realm; ?>
+                <td>Reino: <?php echo $realm; ?>
 					<?php if($row['online']==1)
                    echo "<br/><span class='red_text'>Por favor, deslogue antes de aplicar este serviço.</span>";?>
                 </td>

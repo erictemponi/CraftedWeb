@@ -15,7 +15,8 @@ account::isNotLoggedIn();
 <table style="width: 100%; margin-top: -15px;">
 <tr>
 <td><span class='blue_text'>Nome da conta</span></td><td> <?php echo ucfirst(strtolower($_SESSION['cw_user']));?></td>
-<td><span class='blue_text'>Registrado em</span></td><td><?php echo account::getJoindate($_SESSION['cw_user']); ?></td>
+<?php $date = date_create(account::getJoindate($_SESSION['cw_user'])); ?>
+<td><span class='blue_text'>Registrado em</span></td><td><?php echo date_format($date, "d/m/Y à\s H:i:s"); ?></td>
 </tr>
 <tr>
     <td><span class='blue_text'>Endereço de e-mail</span></td><td><?php echo account::getEmail($_SESSION['cw_user']);?></td>
@@ -39,8 +40,8 @@ account::isNotLoggedIn();
                  <?php if($GLOBALS['service']['unstuck']['status']=='TRUE') { ?>
                      <div class='service' onclick='redirect("?p=unstuck")'>
                      <div class='service_icon'><img src='styles/global/images/icons/character_migration.png'></div>
-                     <h3>Unstuck</h3>
-                     <div class='service_desc'>Unstuck seu personagem.</div>
+                     <h3>Destravar</h3>
+                     <div class='service_desc'>Destrave seu personagem.</div>
                      </div>
                  <?php } ?>
                  

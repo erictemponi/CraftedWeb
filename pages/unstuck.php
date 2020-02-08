@@ -8,16 +8,16 @@
  */
  
 ?>
-<div class='box_two_title'>Unstuck Personagem</div>
-Escolha o personagem em que você deseja realizar o Unstuck. O personagem será teleportado para o local de seu nascimento.<hr/>
+<div class='box_two_title'>Destravar Personagem</div>
+Escolha o personagem em que você deseja destravar. O personagem será teleportado para o local em que sua Pedra do Regresso está vinculada.<hr/>
 <?php
 $service = "unstuck";
 
 if($GLOBALS['service'][$service]['price']==0) 
-      echo '<span class="attention">Unstuck é gratuito.</span>';
+      echo '<span class="attention">Destravar é gratuito.</span>';
 else
 { ?>
-<span class="attention">Custos do Unstuck 
+<span class="attention">Custos para Destravar 
 <?php 
 echo $GLOBALS['service'][$service]['price'].' '.website::convertCurrency($GLOBALS['service'][$service]['currency']); ?></span>
 <?php 
@@ -60,7 +60,7 @@ while($row = mysql_fetch_assoc($result))
                 
                 <td>Reino: <?php echo $realm; ?>
 					<?php if($row['online']==1)
-                   echo "<br/><span class='red_text'>Please log out before trying to unstuck.</span>";?>
+                   echo "<br/><span class='red_text'>Por favor, desconecte-se antes de tentar destravar seu personagem.</span>";?>
                 </td>
                 
                 <td align="right"> &nbsp; <input type="submit" value="Unstuck" 
