@@ -57,7 +57,7 @@ CREATE TABLE `instance_data` (
   `name` varchar(450) default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `instance_data`(`map`,`name`) VALUES (33,'Shadowfang keep'),(36,'Deadmines'),(43,'Wailing caverns'),(47,'Razorfen kraul'),(48,'Blackfathom deeps'),(70,'Uldaman'),(90,'Gnomeregan'),(109,'Sunken temple'),(129,'Razorfen downs'),(189,'Scarlet monastery'),(209,'Zulfarrak'),(229,'Blackrock spire'),(230,'Blackrock depths'),(249,'Onyxias lair'),(269,'Dark portal'),(289,'Scholomance'),(309,'Zulgurub'),(329,'Stratholme'),(409,'Molten core'),(469,'Blackwing lair'),(509,'Ruins of ahnqiraj'),(531,'Temple of ahnqiraj'),(532,'Karazhan'),(615,'Obsidian sanctum'),(534,'Hyjal'),(540,'Shattered halls'),(542,'Blood furnace'),(543,'Ramparts'),(544,'Magtheridons lair'),(545,'Steam vault'),(548,'Serpent shrine'),(550,'The eye'),(552,'Arcatraz'),(554,'Mechanar'),(555,'Shadow labyrinth'),(556,'Sethekk halls'),(560,'Old hillsbrad'),(564,'Black temple'),(565,'Gruuls lair'),(568,'Zulaman'),(580,'Sunwell plateau'),(585,'Magisters terrace'),(574,'Utgarde keep'),(575,'Utgarde pinnacle'),(576,'Nexus'),(578,'Oculus'),(533,'Naxxramas'),(608,'Violet hold'),(604,'Gundrak'),(602,'Halls of lightning'),(599,'Halls of stone'),(601,'Azjol nerub'),(619,'Ahnkahet'),(600,'Drak tharon'),(595,'Culling of stratholme'),(616,'Eye of eternity'),(624,'Archavon'),(603,'Ulduar'),(650,'Trial of the champion'),(649,'Trial of the crusader'),(631,'Icecrown citadel'),(632,'Forge of souls'),(658,'Pit of saron'),(668,'Halls of reflection'),(724,'Ruby sanctum');
+INSERT INTO `instance_data`(`map`,`name`) VALUES (33,'Bastilha da Presa Negra'),(36,'Minas Mortas'),(43,'Caverna Ululante'),(47,'Urzal dos Tuscos'),(48,'Profundezas Negras'),(70,'Uldaman'),(90,'Gnomeregan'),(109,'Templo Sunken'),(129,'Urzal dos Mortos'),(189,'Monastério Escarlate'),(209,'Zul\'Farrak'),(229,'Pico da Rocha Negra'),(230,'Abismo Rocha Negra'),(249,'Covil da Onyxia'),(269,'Portal Negro'),(289,'Scolomântia'),(309,'Zul\'Gurub'),(329,'Stratholme'),(409,'Núcleo Derretido'),(469,'Covil Asa Negra'),(509,'Ruínas de Ahn\'Qiraj'),(531,'Templo de Ahn\'Qiraj'),(532,'Karazhan'),(615,'Santuário Obsidiano'),(534,'Hyjal'),(540,'Salões Despedaçados'),(542,'Fornalha de Sangue'),(543,'Paliçada'),(544,'Covil de Magtheridon'),(545,'Câmara dos Vapores'),(548,'Caverna do Serpentário'),(550,'Bastilha da Tormenta'),(552,'Arcatraz'),(554,'Mecanar'),(555,'Labirinto Soturno'),(556,'Salões dos Sethekk'),(560,'Antigo Contraforte'),(564,'Templo Negro'),(565,'Covil de Gruul'),(568,'Zul\'Aman'),(580,'Platô da Nascente do Sol'),(585,'Terraço dos Magísteres'),(574,'Bastilha Utgarde'),(575,'Pináculo Utgarde'),(576,'Nexus'),(578,'Óculus'),(533,'Naxxramas'),(608,'Castelo Violeta'),(604,'Gundrak'),(602,'Salões Relampejantes'),(599,'Salões Rochosos'),(601,'Azjol-Nerub'),(619,'Ahn\'kahet'),(600,'Drak\'Tharon'),(595,'Expurgo de Stratholme'),(616,'Olho da Eternidade'),(624,'Arcavon'),(603,'Ulduar'),(650,'Prova do Campeão'),(649,'Prova do Cruzado'),(631,'Cidadela da Coroa de Gelo'),(632,'Forja das Almas'),(658,'Fosso de Saron'),(668,'Salões da Reflexão'),(724,'Santuário Rubi');
 
 DROP TABLE IF EXISTS `item_icons`;
 CREATE TABLE `item_icons` (
@@ -78,7 +78,7 @@ CREATE TABLE `news` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `news`(`id`,`title`,`body`,`author`,`image`,`date`) VALUES (1,'Bem vindo(a) ao seu novo Site!','Se você está lendo essa mensagem, significa que você instalou o site corretamente. Você pode editar esta mensagem na tabela news do Banco de Dados do Site. Faça bom uso do site!','Erictemponi','','2013-11-23 14:11:07');
+INSERT INTO `news`(`id`,`title`,`body`,`author`,`image`,`date`) VALUES (1,'Bem vindo(a) ao seu novo Site!','Se você está lendo essa mensagem, significa que você instalou o site corretamente. Você pode editar esta mensagem na tabela news do Banco de Dados do Site. Faça bom uso do mesmo!','Erictemponi','','2020-02-08 14:11:07');
 
 
 DROP TABLE IF EXISTS `news_comments`;
@@ -237,7 +237,7 @@ CREATE TABLE `votingsites` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
-INSERT INTO `votingsites`(`id`,`title`,`points`,`image`,`url`) VALUES (1,'OpenWoW',2,'http://cdn.openwow.com/toplist/vote_small.jpg','http://www.openwow.com/'),(2,'Xtremetop100',2,'http://www.xtremeTop100.com/votenew.jpg','http://www.xtremetop100.com/');
+INSERT INTO `votingsites`(`id`,`title`,`points`,`image`,`url`) VALUES (1,'Xtremetop100',2,'http://www.xtremeTop100.com/votenew.jpg','http://www.xtremetop100.com/');
 
 DROP TABLE IF EXISTS `shoplog`;
 CREATE TABLE `shoplog` (
