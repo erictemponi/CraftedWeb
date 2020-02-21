@@ -7,7 +7,7 @@ if(isset($_POST['step']))
 	switch($_POST['step'])
 	{
 		case(1):
-			step1($_POST['realmlist'],$_POST['host'],$_POST['user'],$_POST['pass'],$_POST['webdb'],$_POST['worlddb'],$_POST['logondb'],$_POST['domain'],
+			step1($_POST['realmlist'],$_POST['host'],$_POST['port'],$_POST['user'],$_POST['pass'],$_POST['webdb'],$_POST['worlddb'],$_POST['logondb'],$_POST['domain'],
 			$_POST['title'],$_POST['email'],$_POST['expansion'],$_POST['paypal']);
 		break;
 		
@@ -30,13 +30,14 @@ if(isset($_POST['step']))
 	}
 }
 
-function step1($realmlist,$host,$user,$pass,$webdb,$worlddb,$logondb,$domain,$title,$email,$exp,$paypal) 
+function step1($realmlist,$host,$port,$user,$pass,$webdb,$worlddb,$logondb,$domain,$title,$email,$exp,$paypal) 
 {
-	if(empty($host) || empty($user) || empty($logondb) || empty($worlddb) || empty($webdb) || empty($realmlist) || empty($title)
+	if(empty($host) || empty($port) || empty($user) || empty($logondb) || empty($worlddb) || empty($webdb) || empty($realmlist) || empty($title)
 	|| empty($domain) || empty($email))
 		exit('Por favor, preencha todos os campos!');
 		
 	$_SESSION['install']['database']['host'] = $host;
+	$_SESSION['install']['database']['port'] = $port;
 	$_SESSION['install']['database']['user'] = $user;
 	$_SESSION['install']['database']['pass'] = $pass;
 	$_SESSION['install']['database']['logondb'] = $logondb;
@@ -78,7 +79,7 @@ function step2()
 function step3() 
 {
 	echo '[Info]Conectando com o Banco de Dados...';
-	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass']);
+	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass'],NULL,$_SESSION['install']['database']['port']);
 	if (!$link) {
 		die('<br/>[FALHA]Não foi possível conectar com o Banco de Dados. Por favor, reinicie a instalação. ');
 	}
@@ -257,7 +258,7 @@ $config = '<?php
 	/* mySQL connection settings
 	/*************************/
 	
-	$connection[\'host\'] = \''.$_SESSION['install']['database']['host'].'\';
+	$connection[\'host\'] = \''.$_SESSION['install']['database']['host'].':'.$_SESSION['install']['database']['port'].'\';
 	$connection[\'user\'] = \''.$_SESSION['install']['database']['user'].'\';
 	$connection[\'password\'] = \''.$_SESSION['install']['database']['pass'].'\';
 	$connection[\'logondb\'] = \''.$_SESSION['install']['database']['logondb'].'\';
@@ -454,7 +455,7 @@ function step4()
 	$files = scandir('sql/updates/');
 	
 	echo '[Info]Conectando com o Banco de Dados...';
-	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass']);
+	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass'],NULL,$_SESSION['install']['database']['port']);
 	if (!$link) {
 		die('<br/>[FALHA]Não foi possível conectar com o Banco de Dados. Reinicie a instalação. ');
 	}
@@ -493,7 +494,7 @@ function step4()
 
 function step5($rid,$name,$port,$host,$m_host,$m_user,$m_pass,$a_user,$a_pass,$desc,$sendtype,$chardb,$raport,$soapport)
 {
-	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass']);
+	$link = mysqli_connect($_SESSION['install']['database']['host'],$_SESSION['install']['database']['user'],$_SESSION['install']['database']['pass'],NULL,$_SESSION['install']['database']['port']);
 	mysqli_select_db($link, $_SESSION['install']['database']['webdb']);
 	
 	$rid = (int)$rid;

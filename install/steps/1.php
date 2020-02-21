@@ -10,9 +10,11 @@
     <p id="steps">Introdução &raquo; <b>Informações MySQL</b> &raquo; Configurar &raquo; Banco de Dados &raquo; Informações do Reino &raquo; Fim<p>
     <hr/>
     <fieldset style="float: left;">
-       <legend>Configurações do MySQL</legend>
-       <label>Host do MySQL</label><BR />
+		<legend>Configurações do MySQL</legend>
+		<label>Host do MySQL</label><BR />
         <input type="text" placeholder="127.0.0.1" id="step1_host"><BR />
+		<label>Porta do MySQL</label><BR />
+		<input type="text" placeholder="3306" id="step1_port"><BR />
         <label>Usuário do MySQL</label><BR />
         <input type="text" placeholder="root" id="step1_user"><BR />
         <label>Senha do MySQL</label><BR />
@@ -26,9 +28,8 @@
     </fieldset>
 
     <fieldset style="float: right;">
-      <legend>Configurações do Site e do Servidor</legend>
-      <legend>
-<label>Expansão do Core</label><BR />
+		<legend>Configurações do Site e do Servidor</legend>
+		<label>Expansão do Core</label><BR />
         <select id="step1_exp">
             <option value="0">Vanilla (Sem expansão)</option>
             <option value="1">The Burning Crusade</option>
@@ -45,8 +46,7 @@
         <label>E-mail do PayPal</label><BR />
         <input type="text" placeholder="seuemail@gmail.com" id="step1_paypal"><BR />
         <label>E-mail Padrão</label><BR />
-      <input type="text" placeholder="seuserver@seuserver.com" id="step1_email">
-      </legend>
+		<input type="text" placeholder="seuserver@seuserver.com" id="step1_email">
     </fieldset>
     <BR><BR />
     <input type="submit" value="Vá Para a Etapa 2" onclick="step1()">

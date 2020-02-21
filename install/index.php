@@ -8,7 +8,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 	<title>Instalação do CW</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

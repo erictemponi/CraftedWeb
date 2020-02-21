@@ -4,6 +4,7 @@ function step1()
 	var realmlist = document.getElementById("step1_realmlist").value;
 	var title = document.getElementById("step1_title").value;
 	var host = document.getElementById("step1_host").value;
+	var port = document.getElementById("step1_port").value;
 	var user = document.getElementById("step1_user").value;
 	var pass = document.getElementById("step1_pass").value;
 	var webdb = document.getElementById("step1_webdb").value;
@@ -14,7 +15,7 @@ function step1()
 	var expansion = document.getElementById("step1_exp").value;
 	var paypal = document.getElementById("step1_paypal").value;
 	
-	$.post("functions.php", { step: 1, realmlist: realmlist, title: title, host: host, user: user, pass:pass, webdb: webdb, worlddb: worlddb, logondb: logondb,
+	$.post("functions.php", { step: 1, realmlist: realmlist, title: title, host: host, port: port, user: user, pass: pass, webdb: webdb, worlddb: worlddb, logondb: logondb,
 	email: email, domain: domain, expansion: expansion, paypal: paypal },
        function(data) 
 	   {
