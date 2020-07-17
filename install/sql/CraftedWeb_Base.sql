@@ -119,7 +119,7 @@ CREATE TABLE `payments_log` (
   `txnid` varchar(30) NOT NULL default '',
   `pendingreason` varchar(10) default NULL,
   `reasoncode` varchar(20) NOT NULL default '',
-  `datecreation` date NOT NULL default '0000-00-00'
+  `datecreation` date NOT NULL default '1000-01-01'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `realms`;
