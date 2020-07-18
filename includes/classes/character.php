@@ -22,7 +22,7 @@ class character {
 			if($GLOBALS['service']['unstuck']['currency']=='vp')
 			{
 				if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service']['unstuck']['price'])==FALSE) 
-					die('<b class="red_text">Pontos de Votação insuficiente!</b>' );
+					die('<b class="red_text">Pontos de Votação insuficientes!</b>' );
 				else
 					account::deductVP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['unstuck']['price']);	
 		}
@@ -30,7 +30,7 @@ class character {
 			if($GLOBALS['service']['unstuck']['currency']=='dp')
 			{
 				if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service']['unstuck']['price'])==FALSE) 
-					die('<b class="red_text">Insuficiente '.$GLOBALS['donation']['coins_name'].'</b>');
+					die('<b class="red_text">'.$GLOBALS['donation']['coins_name'].' Insuficientes</b>');
 				else
 					account::deductDP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['unstuck']['price']);
 		}
@@ -47,7 +47,7 @@ class character {
 		mysql_query("UPDATE characters SET position_x='".$new_x."', position_y='".$new_y."', 
 		position_z='".$new_z."', zone='".$new_zone."',map='".$new_map."' WHERE guid='".$guid."'");
 		
-		account::logThis("Unstuck realizado em ".character::getCharName($guid,$rid),'Unstuck',$rid);
+		account::logThis("O personagem ".character::getCharName($guid,$rid)." foi destravado",'Destravar',$rid);
 		
 		return TRUE;
 	  }
@@ -65,23 +65,23 @@ class character {
 		{
 			if($GLOBALS['service']['revive']['currency']=='vp')
 			{
-				if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service']['unstuck']['price'])==FALSE) 
-					die('<b class="red_text">Pontos de Votação insuficiente!</b>');
+				if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service']['revive']['price'])==FALSE) 
+					die('<b class="red_text">Pontos de Votação insuficientes!</b>');
 				else
 					account::deductVP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['revive']['price']);	
 			}
 		
 		if($GLOBALS['service']['revive']['currency']=='dp')
 		{
-			if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service']['unstuck']['price'])==FALSE) 
-				die( '<b class="red_text">Insuficiente '.$GLOBALS['donation']['coins_name'].'</b>' );
+			if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service']['revive']['price'])==FALSE) 
+				die( '<b class="red_text">'.$GLOBALS['donation']['coins_name'].' Insuficientes</b>' );
 			else
 				account::deductDP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['revive']['price']);	
 		}
 			
 		    mysql_query("DELETE FROM character_aura WHERE guid = '".$guid."' AND spell = '20584' OR guid = '".$guid."' AND spell = '8326'");
 			
-			account::logThis("Realizado o reviver em ".character::getCharName($guid,$rid),'Reviver',$rid);
+			account::logThis("O personagem ".character::getCharName($guid,$rid)." foi revivido",'Reviver',$rid);
 			
 			return TRUE;
 	  }
@@ -104,7 +104,7 @@ class character {
 		{
 			if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service']['instant80']['price'])==FALSE) 
 			{
-				echo '<b class="red_text">Insuficiente '.$GLOBALS['donation']['coins_name'].'</b>';
+				echo '<b class="red_text">'.$GLOBALS['donation']['coins_name'].' Insuficientes</b>';
 				$error = true;
 			}
 		} 
@@ -112,7 +112,7 @@ class character {
 		{
 			if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service']['instant80']['price'])==FALSE) 
 			{
-				echo '<b class="red_text">Pontos de Votação insuficiente.</b>';
+				echo '<b class="red_text">Pontos de Votação insuficientes.</b>';
 				$error = true;
 			}
 		} 
@@ -123,7 +123,7 @@ class character {
 			connect::connectToRealmDB($values[1]);
 			mysql_query("UPDATE characters SET level='80' WHERE guid = '".$values[0]."'");
 			
-			account::logThis("Realizado o nível máximo instantâneo em ".character::getCharName($values[0],NULL),'Instantâneo',NULL);
+			account::logThis("O personagem ".character::getCharName($values[0],NULL)." está agora no nível máximo",'Nível Máximo',NULL);
 			
 			echo '<h3 class="green_text">O nível do personagem foi definido para 80!</h3>';
 		}
