@@ -51,14 +51,14 @@ if ($_POST['action']=='getLocations')
 	if (in_array($row['race'],$alliance)) 
 	{
 		//Alliance
-		$locations_name = array( 1  => "Stormwind" , 2 => "Ironforge", 3 => "Darnassus", 4 => "The Exodar", 5 => "Dalaran", 6 => "Shattrath");
-        $locations_image = array("Stormwind" => "spell_arcane_teleportstormwind", "Ironforge" => "spell_arcane_teleportironforge", "Darnassus"  => "spell_arcane_teleportdarnassus", 
-		"The Exodar" => "spell_arcane_teleportexodar","Dalaran" => "spell_arcane_teleportdalaran", "Shattrath" => "spell_arcane_teleportshattrath");
+		$locations_name = array( 1  => "Ventobravo" , 2 => "Altaforja", 3 => "Darnassus", 4 => "Exodar", 5 => "Dalaran", 6 => "Shattrath");
+        $locations_image = array("Ventobravo" => "spell_arcane_teleportstormwind", "Altaforja" => "spell_arcane_teleportironforge", "Darnassus"  => "spell_arcane_teleportdarnassus", 
+		"Exodar" => "spell_arcane_teleportexodar","Dalaran" => "spell_arcane_teleportdalaran", "Shattrath" => "spell_arcane_teleportshattrath");
 	} else {
 		//Horde
-		$locations_name = array( 1  => "Orgrimmar" , 2 => "Undercity", 3 => "Thunder Bluff", 4 => "Silvermoon", 5 => "Dalaran", 6 => "Shattrath");
-        $locations_image = array("Orgrimmar" => "spell_arcane_teleportorgrimmar", "Undercity" => "spell_arcane_teleportundercity", 
-		"Thunder Bluff"  => "spell_arcane_teleportthunderbluff", "Silvermoon" => "spell_arcane_teleportsilvermoon", "Dalaran" => "spell_arcane_teleportdalaran", 
+		$locations_name = array( 1  => "Orgrimmar" , 2 => "Cidade Baixa", 3 => "Penhasco do Trovão", 4 => "Luaprata", 5 => "Dalaran", 6 => "Shattrath");
+        $locations_image = array("Orgrimmar" => "spell_arcane_teleportorgrimmar", "Cidade Baixa" => "spell_arcane_teleportundercity", 
+		"Penhasco do Trovão"  => "spell_arcane_teleportthunderbluff", "Luaprata" => "spell_arcane_teleportsilvermoon", "Dalaran" => "spell_arcane_teleportdalaran", 
 		"Shattrath" => "spell_arcane_teleportshattrath");
 	}
 	echo '<h3>Escolha o Local</h3>';
@@ -122,14 +122,14 @@ if ($_POST['action']=='teleport')
 	switch($location)
 	{
 		//stormwind
-		case "Stormwind":
+		case "Ventobravo":
 			$map = "0";
 			$x = "-8921.019531";
 			$y = "547.346985";
 			$z = "94.191597";
 			break;
 		//ironforge
-		case "Ironforge":
+		case "Altaforja":
 			$map = "0";
 			$x = "-4981.25";
 			$y = "-881.542";
@@ -143,7 +143,7 @@ if ($_POST['action']=='teleport')
 			$z = "1341.39";
 			break;
 		//exodar
-		case "The Exodar":
+		case "Exodar":
 			$map = "530";
 			$x = "-3987.29";
 			$y = "-11846.6";
@@ -157,21 +157,21 @@ if ($_POST['action']=='teleport')
 			$z = "25.462500";
 			break;
 		//thunderbluff
-		case "Thunder Bluff":
+		case "Penhasco do Trovão":
 			$map = "1";
 			$x = "-1196.22";
 			$y = "29.0941";
 			$z = "176.949";
 			break;
 		//undercity
-		case "Undercity":
+		case "Cidade Baixa":
 			$map = "0";
 			$x = "1586.48";
 			$y = "239.562";
 			$z = "-52.149";
 			break;
 		//silvermoon
-		case "Silvermoon":
+		case "Luaprata":
 			$map = "530";
 			$x = "9473.03";
 			$y = "-7279.67";
