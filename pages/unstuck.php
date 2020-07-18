@@ -9,7 +9,7 @@
  
 ?>
 <div class='box_two_title'>Destravar Personagem</div>
-Escolha o personagem em que você deseja destravar. O personagem será teleportado para o local em que sua Pedra do Regresso está vinculada.<hr/>
+Escolha o personagem em que você deseja destravar. O personagem será teleportado para o local onde sua Pedra do Regresso está vinculada.<hr/>
 <?php
 $service = "unstuck";
 
@@ -63,7 +63,7 @@ while($row = mysql_fetch_assoc($result))
                    echo "<br/><span class='red_text'>Por favor, desconecte-se antes de tentar destravar seu personagem.</span>";?>
                 </td>
                 
-                <td align="right"> &nbsp; <input type="submit" value="Unstuck" 
+                <td align="right"> &nbsp; <input type="submit" value="Destravar" 
 				   <?php if($row['online']==0) { ?> 
                    onclick='unstuck(<?php echo $row['guid']; ?>,"<?php echo $char_db; ?>")' <?php }
                    else { echo 'disabled="disabled"'; } ?>>
