@@ -54,7 +54,7 @@ if (isset($_POST['item_entry']))
 		 require('../misc/ra.php');
 		 require('../classes/character.php');
 		  
-		 sendRa("send items ".character::getCharname($realm[0])." \"O seu item solicitado\" \"Obrigado por nos apoiar!\" ".$entry." ",
+		 sendRa("send items ".character::getCharname($realm[0])." \"Sua recompensa\" \"Aqui está a recompensa pela sua compra na loja do nosso site, aproveite-a!\" ".$entry." ",
 		 $row['rank_user'],$row['rank_pass'],$row['host'],$row['ra_port']); 
 	  } 
 	  elseif($row['sendType']=='soap') 
@@ -62,7 +62,7 @@ if (isset($_POST['item_entry']))
 		 require('../misc/soap.php');
 		 require('../classes/character.php'); 
 		 
-		 sendSoap("send items ".character::getCharname($realm[0])." \"O seu item solicitado\" \"Obrigado por nos apoiar!\" ".$entry." ",
+		 sendSoap("send items ".character::getCharname($realm[0])." \"Sua recompensa\" \"Aqui está a recompensa pela sua compra na loja do nosso site, aproveite-a!\" ".$entry." ",
 		 $row['rank_user'],$row['rank_pass'],$row['host'],$row['soap_port']);
 	  }
 	}
