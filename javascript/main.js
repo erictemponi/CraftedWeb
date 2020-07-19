@@ -203,7 +203,7 @@ function unstuck(guid,char_db)
 	popUp("Processando...","Processando...");
 	$.post("includes/scripts/character.php", { action: "unstuck", guid: guid, char_db: char_db},
                function(data) {
-				popUp("Unstuckado!","Seu personagem foi unstuckado com sucesso!");
+				popUp("Destravado!","Seu personagem foi destravado com sucesso!");
           });
 }
 
@@ -218,7 +218,7 @@ function revive(guid,char_db)
 
 function confirmService(guid,realm_id,service,title,name) 
 {
-	popUp("Confirmar","Você tem certeza de que deseja executar um " + title + " em " + name + "?<br/><br/>\
+	popUp("Confirmar","Você tem certeza de que deseja " + title + " do personagem " + name + "?<br/><br/>\
 	<input type='button' value='Sim' onclick='service("+guid+","+realm_id+",\""+ service +"\")'>  \
 	<input type='button' value='Não' onclick='closePopup()'>");
 }
@@ -362,7 +362,7 @@ function selectChar(values,box)
 
 function portTo(locationTo,char_db,character) 
 {
-	popUp("Confirmar Teleport","Você tem certeza de que deseja teleportar este personagem para " + locationTo + "?<br/><br/>\
+	popUp("Confirmar Teleporte","Você tem certeza de que deseja teleportar este personagem para " + locationTo + "?<br/><br/>\
 	<input type='button' value='Sim' onclick='portNow(\""+ character +"\",\""+ locationTo +"\",\""+ char_db +"\")'> \
 	<input type='button' value='Não' onclick='closePopup()'>");
 }
