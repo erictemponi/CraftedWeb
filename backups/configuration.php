@@ -261,7 +261,7 @@
 	'Alterar Senha' => 'changepass.php','Doar' => 'donate.php','Loja de Doação' => 'donateshop.php',
 	'Esqueci minha Senha' => 'forgotpw.php','Início' => 'home.php','Sair' => 'logout.php',
 	'Notícias' => 'news.php','Convide um Amigo' => 'raf.php','Registrar' => 'register.php',
-	'Revive Personagem' => 'revive.php','Configurações da Conta' => 'settings.php','Ajuda' => 'support.php',
+	'Reviver Personagem' => 'revive.php','Configurações da Conta' => 'settings.php','Ajuda' => 'support.php',
 	'Teleportar Personagem' => 'teleport.php','Destravar Personagem' => 'unstuck.php','Votar' => 'vote.php',
 	'Loja de Votação' => 'voteshop.php',);
 	
