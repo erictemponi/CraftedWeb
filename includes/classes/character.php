@@ -34,8 +34,9 @@ class character {
 				else
 					account::deductDP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['unstuck']['price']);
 		}
-			
-		$getXYZ = mysql_query("SELECT * FROM character_homebind WHERE guid='".$guid."'"); 
+		
+		connect::connectToRealmDB($rid);
+		$getXYZ = mysql_query("SELECT * FROM character_homebind WHERE guid='".$guid."'");
 		$row = mysql_fetch_assoc($getXYZ);
 		
 		$new_x = $row['posX']; 
