@@ -9,8 +9,26 @@
  
 
 $service = $_GET['s'];
+$serviceBR;
 
-$service_title = ucfirst($service." Change");
+switch($service) {
+	case 'appearance':
+		$serviceBR = 'a Aparência';
+		break;
+	case 'name':
+		$serviceBR = 'o Nome';
+		break;
+	case 'faction':
+		$serviceBR = 'a Facção';
+		break;
+	case 'race':
+		$serviceBR = 'a Raça';
+		break;
+	default:
+		$serviceBR = 'não sei o quê';
+}
+
+$service_title = 'Alterar '.$serviceBR;
 
 if($GLOBALS['service'][$service]['status']!="TRUE") 
 	echo "Esta página está indisponível.";
@@ -32,7 +50,7 @@ if($GLOBALS['service'][$service]['price']==0)
       	echo '<span class="attention">'.$service_title.' é gratuito.</span>';
 else
 { ?>
-<span class="attention"><?php echo $service_title; ?> custos 
+<span class="attention"><?php echo $service_title; ?> custa 
 <?php 
 echo $GLOBALS['service'][$service]['price'].' '.website::convertCurrency($GLOBALS['service'][$service]['currency']); ?></span>
 <?php 
@@ -68,9 +86,9 @@ while($row = mysql_fetch_assoc($result))
                     <?php } ?>
                 </td>
                 
-                <td width="160"><h3><?php echo $row['name']; ?></h3>
-					<?php echo $row['level']." ".character::getRace($row['race'])." ".character::getGender($row['gender']).
-                    " ".character::getClass($row['class']); ?>
+                <td width="220"><h3><?php echo $row['name']; ?></h3>
+					<?php echo character::getRace($row['race'])." ".character::getClass($row['class'])." Nível ".$row['level'].
+                    " <br>Sexo ".character::getGender($row['gender']); ?>
                 </td>
                 
                 <td>Reino: <?php echo $realm; ?>

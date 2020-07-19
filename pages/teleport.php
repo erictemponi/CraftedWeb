@@ -45,22 +45,23 @@ while($row = mysql_fetch_assoc($result))
 	?>
     <div class='charBox' style="cursor:pointer;" id="<?php echo $row['guid'].'*'.$char_db; ?>"<?php if ($row['online'] != 1) { ?> 
     onclick="selectChar('<?php echo $row['guid'].'*'.$char_db; ?>',this)"<?php } ?>>
-    <table>
+    <table width="100%">
 	        <tr>
-                <td>
+                <td width="73">
                 <?php if(!file_exists('styles/global/images/portraits/'.$row['gender'].'-'.$row['race'].'-'.$row['class'].'.gif'))
 				       echo '<img src="styles/'.$GLOBALS['template']['path'].'/images/unknown.png" />';
 					   else 
 					   { ?>
-                <img src="styles/global/images/portraits/
-					<?php echo $row['gender'].'-'.$row['race'].'-'.$row['class']; ?>.gif" border="none">
+                <img src="styles/global/images/portraits/<?php echo $row['gender'].'-'.$row['race'].'-'.$row['class']; ?>.gif" border="none">
                     <?php } ?>
                 </td>
                 
-                <td><h3><?php echo $row['name']; ?></h3>
-                    Nível <?php echo $row['level']." ".character::getRace($row['race'])." ".character::getGender($row['gender']).
-                    " ".character::getClass($row['class']); ?><br/>
-                    Reino: <?php echo $realm; ?>
+                <td width="220"><h3><?php echo $row['name']; ?></h3>
+					<?php echo character::getRace($row['race'])." ".character::getClass($row['class'])." Nível ".$row['level'].
+                    " <br>Sexo ".character::getGender($row['gender']); ?>
+                </td>
+                
+                <td>Reino: <?php echo $realm; ?>
                     <?php if($row['online']==1)
                    echo "<br/><span class='red_text'>Por favor, deslogue antes de teleportar.</span>";?>
                 </td>

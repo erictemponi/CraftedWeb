@@ -56,9 +56,9 @@ while($row = mysql_fetch_assoc($result))
                     <?php } ?>
                 </td>
                 
-                <td width="160"><h3><?php echo $row['name']; ?></h3>
-					<?php echo $row['level']." ".character::getRace($row['race'])." ".character::getGender($row['gender']).
-                    " ".character::getClass($row['class']); ?>
+                <td width="220"><h3><?php echo $row['name']; ?></h3>
+					<?php echo character::getRace($row['race'])." ".character::getClass($row['class'])." Nível ".$row['level'].
+                    " <br>Sexo ".character::getGender($row['gender']); ?>
                 </td>
                 
                 <td>Reino: <?php echo $realm; ?>
