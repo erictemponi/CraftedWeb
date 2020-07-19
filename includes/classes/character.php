@@ -78,8 +78,8 @@ class character {
 			else
 				account::deductDP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service']['revive']['price']);	
 		}
-			
-		    mysql_query("DELETE FROM character_aura WHERE guid = '".$guid."' AND spell = '20584' OR guid = '".$guid."' AND spell = '8326'");
+			connect::connectToRealmDB($rid);
+		    mysql_query("DELETE FROM character_aura WHERE (guid = '".$guid."' AND spell = '55164') OR (guid = '".$guid."' AND spell = '20584') OR (guid = '".$guid."' AND spell = '8326')");
 			
 			account::logThis("O personagem ".character::getCharName($guid,$rid)." foi revivido",'Reviver',$rid);
 			
