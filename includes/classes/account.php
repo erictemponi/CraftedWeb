@@ -542,10 +542,10 @@ class account {
 				connect::selectDB('logondb');
 				$getPass = mysql_query("SELECT `sha_pass_hash` FROM `account` WHERE `id`='".$_SESSION['cw_user_id']."'");
 				$row = mysql_fetch_assoc($getPass);
-				$thePass = $row['sha_pass_hash'];
+				$thePass = strtoupper($row['sha_pass_hash']);
 
 				$pass = mysql_real_escape_string(strtoupper($_POST['cur_pass']));
-				$pass_hash = sha1($username.':'.$pass);
+				$pass_hash = strtoupper(sha1($username.':'.$pass));
 
 				$new_pass = mysql_real_escape_string(strtoupper($_POST['new_pass']));
 				$new_pass_hash = sha1($username.':'.$new_pass);
