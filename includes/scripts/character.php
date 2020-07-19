@@ -109,12 +109,12 @@ if ($_POST['action']=='teleport')
 	 if($GLOBALS['service']['teleport']['currency']=="vp" && $GLOBALS['service']['teleport']['price']>0) 
 	 {
 		 if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service']['teleport']['price'])==FALSE)
-		     die("Pontos de Votação Insuficiente!");
+		     die("Pontos de Votação insuficientes!");
 	 } 
 	 elseif($GLOBALS['service']['teleport']['currency']=="dp" && $GLOBALS['service']['teleport']['price']>0) 
 	 {
 		  if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service']['teleport']['price'])==FALSE)
-		     die("Insuficiente ".$GLOBALS['donation']['coins_name']."!");
+		     die($GLOBALS['donation']['coins_name']." Insuficientes!");
 	 }
     	
 	$map = $x = $y = $z = NULL;
@@ -220,7 +220,7 @@ if ($_POST['action']=='teleport')
 	}
 	
 	if ($location == "Dalaran" && $level < 68)
-		die("Abortando...<br/><span class='alert'>Seu personagem deve estar no nível 68 ou superior para teleportar para Northrend!</span>");
+		die("Abortando...<br/><span class='alert'>Seu personagem deve estar no nível 68 ou superior para se teleportar para Nortúndria!</span>");
 
 	if($GLOBALS['service']['teleport']['currency']=="vp")
         account::deductVP($acct_id,$GLOBALS['service']['teleport']['price']);
@@ -232,13 +232,13 @@ if ($_POST['action']=='teleport')
         mysql_query("UPDATE characters SET position_x = ".$x.", position_y= ".$y.", position_z = ".$z.", map = ".$map." WHERE account = ".$acct_id. " AND guid = '".$character."'");
      
 	 if($GLOBALS['service']['teleport']['currency']=="vp")
-		 echo $GLOBALS['service']['teleport']['price']." Pontos de Votação foram retirados de sua conta.";
+		 echo $GLOBALS['service']['teleport']['price']." Pontos de Votação foram retirados da sua conta.";
 	 elseif($GLOBALS['service']['teleport']['currency']=="dp")
-		echo $GLOBALS['service']['teleport']['price']." ".$GLOBALS['donation']['coins_name']." foram retirados de sua conta.";
+		echo $GLOBALS['service']['teleport']['price']." ".$GLOBALS['donation']['coins_name']." foram retirados da sua conta.";
 
-        account::logThis("Teleportado ".$char_name." de " . $from . " para ".$location,'Teleportar',$realm_id);
+        account::logThis($char_name." foi teleportado de ".$from." para ".$location,'Teleportar',$realm_id);
 	
-		echo true;
+		//echo true;
 	}
 	
 }
@@ -259,13 +259,13 @@ if($_POST['action']=='service')
 	if($GLOBALS['service'][$serviceX]['currency']=='vp')
 	{
 		if(account::hasVP($_SESSION['cw_user'],$GLOBALS['service'][$serviceX]['price'])==FALSE)
-			die('<b class="red_text">Pontos de Votação Insuficiente!</b>');
+			die('<b class="red_text">Pontos de Votação Insuficientes!</b>');
 	}
 	
 	if($GLOBALS['service'][$serviceX]['currency']=='dp')
 	{
 		if(account::hasDP($_SESSION['cw_user'],$GLOBALS['service'][$serviceX]['price'])==FALSE)
-			die('<b class="red_text">Insuficiente '.$GLOBALS['donation']['coins_name'].'</b>');
+			die('<b class="red_text">'.$GLOBALS['donation']['coins_name'].' Insuficientes</b>');
 	}
 	
 	switch($serviceX)
@@ -276,22 +276,22 @@ if($_POST['action']=='service')
 		
 		case('appearance'):
 			$command = "customize";
-			$info = "Personalização de personagem";
+			$info = "Personalizar a aparência";
 		break;
 		
 		case('name'):
 			$command = "rename";
-			$info = "Renomear personagem";
+			$info = "Alterar o nome";
 		break;
 		
 		case('faction'):
 			$command = "changefaction";
-			$info = "Alterar facção";
+			$info = "Alterar a facção";
 		break;
 		
 		case('race'):
 		 	$command = "changerace";
-			$info = "Alterar raça";
+			$info = "Alterar a raça";
 		break;
 		
 	}
@@ -322,9 +322,9 @@ if($_POST['action']=='service')
 	if($GLOBALS['service'][$serviceX]['currency']=='dp')
 		account::deductDP(account::getAccountID($_SESSION['cw_user']),$GLOBALS['service'][$serviceX]['price']);
 		
-		account::logThis("Realizado uma ".$info." em ".character::getCharName($guid,$realm_id),$serviceX,$realm_id);
+		account::logThis("No próximo login, você poderá ".$info." do personagem ".character::getCharName($guid,$realm_id),$serviceX,$realm_id);
 	
-	echo true;
+	//echo true;
 }
 
 ?>
