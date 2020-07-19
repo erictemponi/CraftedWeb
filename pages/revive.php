@@ -63,10 +63,10 @@ while($row = mysql_fetch_assoc($result))
                 
                 <td>Reino: <?php echo $realm; ?>
 					<?php if($row['online']==1)
-                    echo "<br/><span class='red_text'>Por favor, deslogue antes de faze o unstuck.</span>";?>
+                    echo "<br/><span class='red_text'>Por favor, deslogue antes de reviver o personagem.</span>";?>
                 </td>
                 
-                <td align="right"> &nbsp; <input type="submit" value="Reviver" 
+                <td align="right"><input type="submit" value="Reviver" 
 				   <?php if($row['online']==0) { ?> 
                    onclick='revive(<?php echo $row['guid']; ?>,"<?php echo $char_db; ?>")' <?php }
                    else { echo 'disabled="disabled"'; } ?>>
