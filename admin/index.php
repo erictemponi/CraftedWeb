@@ -191,15 +191,15 @@
     <table>
            <tr valign="top">
                <td>
-                Host da MySQL: <br/>
-                Usuário da MySQL: <br/>
-                Senha da MySQL: <br/>
+                Host do MySQL: <br/>
+                Usuário do MySQL: <br/>
+                Senha do MySQL: <br/>
                </td>
                <td>
                <b>
-               <?php echo $GLOBALS['connection']['host'];?><br/>
-               <?php echo $GLOBALS['connection']['user']; ?><br/>
-               <?php echo substr($GLOBALS['connection']['password'],0,4); ?>****<br/>
+               <?php echo $GLOBALS['connection']['host'];?><br/><br/>
+               <?php echo $GLOBALS['connection']['user']; ?><br/><br/>
+               <?php echo substr($GLOBALS['connection']['password'],0,3); ?>****<br/>
                </b>
                </td>
                <td>
@@ -210,9 +210,9 @@
                </td>
                <td>
                <b>
-               <?php echo $GLOBALS['connection']['logondb']; ?><br/>
-               <?php echo $GLOBALS['connection']['webdb']; ?><br/>
-               <?php echo $GLOBALS['connection']['worlddb']; ?><br/>
+               <?php echo $GLOBALS['connection']['logondb']; ?><br/><br/>
+               <?php echo $GLOBALS['connection']['webdb']; ?><br/><br/>
+               <?php echo $GLOBALS['connection']['worlddb']; ?><br/><br/>
                <?php 
                      $server->selectDB('webdb');
                      $get = mysql_query("SELECT version FROM db_version");
