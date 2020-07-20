@@ -292,7 +292,7 @@ function loadMiniCart(cart)
 
 function saveItemQuantityInCart(cart,entry) 
 {
-	var quantity = document.getElementById(cart + "Quantidade-" + entry).value;
+	var quantity = document.getElementById(cart + "Quantity-" + entry).value;
 	
 	$.post("includes/scripts/shop.php", { action: "saveQuantity", cart:cart, entry:entry, quantity: quantity},
 		   function(data) {

@@ -60,8 +60,8 @@ if(isset($_SESSION['donateCart']) && !empty($_SESSION['donateCart']))
 while($row = mysql_fetch_array($query)) 
 {
 	?><tr align="center">
-        <td><a href="http://<?php echo $GLOBALS['tooltip_href']; ?>item=<?php echo $row['entry']; ?>"><?php echo $row['name']; ?></a></td> <td>
-        <input type="text" value="<?php echo $_SESSION['donateCart'][$row['entry']]['quantity']; ?>" style="width: 30px;"
+        <td><a href="http://<?php echo $GLOBALS['tooltip_href']; ?>item=<?php echo $row['entry']; ?>"><?php echo $row['name']; ?></a></td>
+        <td><input type="text" value="<?php echo $_SESSION['donateCart'][$row['entry']]['quantity']; ?>" style="width: 30px; text-align: center;"
         onFocus="$(this).next('.quantitySave').fadeIn()" id="donateCartQuantity-<?php echo $row['entry']; ?>" />
         <div class="quantitySave" style="display:none;">
         <a href="#" onclick="saveItemQuantityInCart('donateCart',<?php echo $row['entry']; ?>)">Salvar</a>
@@ -102,15 +102,15 @@ $query = mysql_query($sql);
 ?>
 <table width="100%" >
 <tr id="cartHead">
-  <th>Nome</th>
-<th>Quantidade</th>
-<th>Preço</th>
-<th>Ações</th></tr>
+	<th>Nome</th>
+	<th>Quantidade</th>
+	<th>Preço</th>
+	<th>Ações</th></tr>
 <?php
 while($row = mysql_fetch_array($query)) {
 	?><tr align="center">
-        <td><a href="http://<?php echo $GLOBALS['tooltip_href']; ?>item=<?php echo $row['entry']; ?>"><?php echo $row['name']; ?></a></td> <td>
-        <input type="text" value="<?php echo $_SESSION['voteCart'][$row['entry']]['quantity']; ?>" style="width: 30px;"
+        <td><a href="http://<?php echo $GLOBALS['tooltip_href']; ?>item=<?php echo $row['entry']; ?>"><?php echo $row['name']; ?></a></td>
+        <td><input type="text" value="<?php echo $_SESSION['voteCart'][$row['entry']]['quantity']; ?>" style="width: 30px; text-align: center;"
         onFocus="$(this).next('.quantitySave').fadeIn()" id="voteCartQuantity-<?php echo $row['entry']; ?>" />
         <div class="quantitySave" style="display:none;">
         <a href="#" onclick="saveItemQuantityInCart('voteCart',<?php echo $row['entry']; ?>)">Salvar</a>
