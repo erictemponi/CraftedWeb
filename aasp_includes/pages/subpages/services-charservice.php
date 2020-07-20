@@ -24,7 +24,7 @@ $result = mysql_query("SELECT * FROM service_prices");
 while($row = mysql_fetch_assoc($result)) { ?>
 	<tr>
         <td><?php echo $row['service']; ?></td>
-        <td><input type="text" value="<?php echo $row['price']; ?>" style="width: 50px;" id="<?php echo $row['service']; ?>_price" class="noremove"/></td>
+        <td><input type="text" value="<?php echo $row['price']; ?>" style="width: 50px; text-align: center;" id="<?php echo $row['service']; ?>_price" class="noremove"/></td>
         <td><select style="width: 200px;" id="<?php echo $row['service']; ?>_currency">
           <option value="vp">Pontos de Votação</option>
           <option value="dp">&lt;?php echo $GLOBALS['donation']['coins_name']; ?&gt;</option>
