@@ -182,7 +182,7 @@ class shop {
 								 ( <a onclick="editShopItem('<?php echo $entry; ?>','<?php echo $shop; ?>','<?php echo $row['price']; ?>')">Editar</a> | 
 								   <a onclick="removeShopItem('<?php echo $entry; ?>','<?php echo $shop; ?>')">Remover</a> )
 								 </font>
-								 &nbsp; &nbsp; &nbsp; &nbsp;   
+								 &nbsp;&nbsp;&nbsp;&nbsp;
 								 <?php
 								  }
 								   
@@ -285,7 +285,7 @@ class shop {
                                  ( <a onclick="editShopItem('<?php echo $entry; ?>','<?php echo $shop; ?>','<?php echo $row['price']; ?>')">Editar</a> | 
                                  <a onclick="removeShopItem('<?php echo $entry; ?>','<?php echo $shop; ?>')">Remover</a> )
                              </font>
-                             &nbsp; &nbsp; &nbsp; &nbsp;   
+                             &nbsp;&nbsp;&nbsp;&nbsp;
                              <?php
                                }
                                

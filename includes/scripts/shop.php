@@ -158,7 +158,7 @@ function process_cart($cart, $charaID, $character, $accountID, $realm)
             while ($num > 0)
             {
                 $qty = $num > 12 ? 12 : $num;
-                $command = "send items ".$character." \"O seu item solicitado\" \"Obrigado por nos apoiar!\" ".$entry.":".$qty." ";
+                $command = "send items ".$character." \"Sua recompensa\" \"Aqui está a recompensa pela sua compra na loja do nosso site, aproveite-a!\" ".$entry.":".$qty." ";
 
                 if ($error = sendRA($command, $rank_user, $rank_pass, $host, $ra_port))
                 {
