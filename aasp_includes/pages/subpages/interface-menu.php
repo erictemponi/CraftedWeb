@@ -28,7 +28,9 @@
 							echo "Logado";
 						} elseif($row['shownWhen']=='notlogged') {
 							echo "Não logado";
-						}  else {
+						} elseif($row['shownWhen']=='always') {
+							echo "Sempre";
+						} else {
 							echo ucfirst($row['shownWhen']);
 						}
                    ?>
