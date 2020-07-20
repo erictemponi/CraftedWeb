@@ -24,7 +24,7 @@
         <hr/>
         <p><h2>CraftedWeb</h2>
         Projetado por <a href="http://emudevs.com/" target="_blank">EmuDevs</a></p>
-        e editado por <a href="http://erictemponi.000webhostapp.com/" target="_blank">Eric Temponi</a> <br>
+        e editado por <a href="https://fury-games.boards.net/user/1" target="_blank">Eric Temponi</a> <br>
 		 <p>Para instalar, siga as instruções na tela e digite suas informações <b>corretamente.</b>
       <p>Você irá precisar das configurações MySQL e outras informações do Servidor antes de continuar.
       <p>

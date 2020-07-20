@@ -169,11 +169,11 @@ $config = '<?php
 	 $showLoadTime = true; 
 	 //Shows the page load time in the footer.
 	 
-	 $footer_text = \'Copyright &copy; '.$_SESSION['install']['database']['title'].' 2013<br/>
-	 All rights reserved\'; //Set the footer text, displayed at the bottom.
+	 $footer_text = \'Copyright &copy; '.$_SESSION['install']['database']['title'].' 2020<br/>
+	 Todos os direitos reservados\'; //Set the footer text, displayed at the bottom.
 	 //Tips: &copy; = Copyright symbol. <br/> = line break.
 	 
-	 $timezone = \'Europe/Belgrade\'; //Set the time zone for your website. Default: Europe/Belgrade (GMT +1)
+	 $timezone = \'America/Sao_Paulo\'; //Set the time zone for your website. Default: America/Sao_Paulo (GMT -3)
 	 //Full list of supported timezones can be found here: http://php.net/manual/en/timezones.php
 	 
 	 $core_expansion = '.$_SESSION['install']['database']['exp'].'; //The expansion of your server.
@@ -309,11 +309,11 @@ $config = '<?php
 	/*************************/
 	$donation[\'paypal_email\'] = \''.$_SESSION['install']['database']['paypal'].'\';
 	$donation[\'coins_name\'] = \'Moedas de Doação\';
-	$donation[\'currency\'] = \'USD\';
+	$donation[\'currency\'] = \'BRL\';
 	$donation[\'emailResponse\'] = true;
 	$donation[\'sendResponseCopy\'] = false;
 	$donation[\'copyTo\'] = \''.$_SESSION['install']['database']['email'].'\';
-	$donation[\'responseSubject\'] = \'Obrigado por nos apoiar!\';
+	$donation[\'responseSubject\'] = \'Obrigado por sua ajuda!\';
 	$donation[\'donationType\'] = 2;
 	
 	// paypal_email = The PayPal email address of wich payment will be sent to.
@@ -330,11 +330,11 @@ $config = '<?php
 	/* Just follow the template and enter your custom values */
 	/* array(\'NAME/TITLE\', COINS TO ADD, PRICE) */
 	$donationList = array(
-			array(\'10 Moedas de Doação - 5$\', 10, 5),
-			array(\'20 Moedas de Doação - 8$\', 20, 8),
-			array(\'50 Moedas de Doação - 20$\', 50, 20),
-			array(\'100 Moedas de Doação - 35$\', 100, 35 ),
-			array(\'200 Moedas de Doação - 70$\', 200, 70 )
+			array(\'10 Moedas de Doação - R$ 5\', 10, 5),
+			array(\'20 Moedas de Doação - R$ 8\', 20, 8),
+			array(\'50 Moedas de Doação - R$ 20\', 50, 20),
+			array(\'100 Moedas de Doação - R$ 35\', 100, 35 ),
+			array(\'200 Moedas de Doação - R$ 70\', 200, 70 )
 	);
 	
 	/*************************/
@@ -387,12 +387,12 @@ $config = '<?php
 	/* DO NOT TOUCH THESE CONFIGS unless you know what you are doing! */
 	/************************/
 	
-	$core_pages = array(\'Painel de Conta\' => \'account.php\',\'Carrinho de Compras\' => \'cart.php\',
+	$core_pages = array(\'Painel da Conta\' => \'account.php\',\'Carrinho de Compras\' => \'cart.php\',
 	\'Alterar Senha\' => \'changepass.php\',\'Doar\' => \'donate.php\',\'Loja de Doação\' => \'donateshop.php\',
 	\'Esqueceu sua Senha\' => \'forgotpw.php\',\'Início\' => \'home.php\',\'Sair\' => \'logout.php\',
 	\'Notícias\' => \'news.php\',\'Convide um Amigo\' => \'raf.php\',\'Registrar\' => \'register.php\',
-	\'Reviver Personagem\' => \'revive.php\',\'Alterar E-mail\' => \'settings.php\',\'Suporte\' => \'support.php\',
-	\'Teleportar Personagem\' => \'teleport.php\',\'Unstuck Personagem\' => \'unstuck.php\',\'Votar\' => \'vote.php\',
+	\'Reviver Personagem\' => \'revive.php\',\'Configurações da Conta\' => \'settings.php\',\'Suporte\' => \'support.php\',
+	\'Teleportar Personagem\' => \'teleport.php\',\'Destravar Personagem\' => \'unstuck.php\',\'Votar\' => \'vote.php\',
 	\'Loja de Votação\' => \'voteshop.php\',\'Confirmar Serviço\' => \'confirmservice.php\');
 	
 	###LOAD MAXIMUM ITEM LEVEL DEPENDING ON EXPANSION###
@@ -414,9 +414,9 @@ $config = '<?php
 	}
 	
 	if($GLOBALS[\'core_expansion\']>2) 
-		$tooltip_href = \'www.wowhead.com/\';
+		$tooltip_href = \'pt.wowhead.com/\';
 	else
-		$tooltip_href = \'www.openwow.com/?\';
+		$tooltip_href = \'www.wotlkdb.com/?\';
 	
 	//Set the timezone.
 	date_default_timezone_set($GLOBALS[\'timezone\']);
