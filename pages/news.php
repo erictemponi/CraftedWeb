@@ -71,7 +71,7 @@ if (isset($_GET['newsid']))
 	{
 		if (isset($_POST['text']) && isset($_SESSION['cw_user']) && strlen($_POST['text']) <= 1000) 
 		{
-			$text = mysql_real_escape_string(trim(htmlentities($_POST['text'])));
+			$text = mysql_real_escape_string(trim($_POST['text']));
 			
 			if(!empty($text) and $text != 'Comentar esta postagem...')
 			{
