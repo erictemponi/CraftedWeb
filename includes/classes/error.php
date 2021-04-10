@@ -29,7 +29,7 @@ function errors($error,$num)
 
 function log_error($error,$num) 
 {
- error_log("*[".date("d M Y H:i")."] ".$error, 3, "error.log");
+ error_log("*[".date("d M Y H:i")."] ".$error."\r\n", 3, "error.log");
 }
 
 function loadCustomErrors() 
@@ -40,6 +40,6 @@ function loadCustomErrors()
 function customError($errno, $errstr)
 {
     if ($errno!=8 && $errno!=2048 && $GLOBALS['useDebug']==TRUE) 
-          error_log("*[".date("d M Y H:i")."]<i>".$errstr."</i>", 3, "error.log");
+          error_log("*[".date("d M Y H:i")."] ".$errstr."\r\n", 3, "error.log");
 }
 ?>
