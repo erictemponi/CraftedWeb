@@ -96,6 +96,11 @@ function step3()
 	mysqli_select_db($link, $_SESSION['install']['database']['webdb'])or die
 	('<br/>[FALHA]Não foi possível conectar com o Banco de Dados do Site. Por favor, reinicie a instalação.');
 	
+	mysqli_query($link, "SET NAMES 'utf8'") or die("Erro de SQL: ".mysqli_error($link));
+	mysqli_query($link, 'SET character_set_connection=utf8') or die("Erro de SQL: ".mysqli_error($link));
+	mysqli_query($link, 'SET character_set_client=utf8') or die("Erro de SQL: ".mysqli_error($link));
+	mysqli_query($link, 'SET character_set_results=utf8') or die("Erro de SQL: ".mysqli_error($link));
+	
 	echo '<br/>[Sucesso]Conectado com o Banco de Dados do Site';
 	echo '<br/>[Info]Criando as tabelas e inserindo os dados no Banco de Dados do Site...';
 	
