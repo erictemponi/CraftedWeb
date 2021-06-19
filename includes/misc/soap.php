@@ -20,6 +20,7 @@ $client = new SoapClient(NULL,
 try 
 {
     $result = $client->executeCommand(new SoapParam($command, "command"));
+	return;
 
     echo "Comando bem sucedido! Saída:<br />\n";
     echo $result;

@@ -117,6 +117,7 @@ function process_cart($cart, $charaID, $character, $accountID, $realm)
     $rank_user = $GLOBALS['realms'][$realm]['rank_user'];
     $rank_pass = $GLOBALS['realms'][$realm]['rank_pass'];
     $ra_port   = $GLOBALS['realms'][$realm]['ra_port'];
+    $soap_port   = $GLOBALS['realms'][$realm]['soap_port'];
 
     $totalPrice = 0;
     $entrys = array_keys($_SESSION[$cart.'Cart']);
@@ -160,7 +161,7 @@ function process_cart($cart, $charaID, $character, $accountID, $realm)
                 $qty = $num > 12 ? 12 : $num;
                 $command = "send items ".$character." \"Sua recompensa\" \"Aqui está a recompensa pela sua compra na loja do nosso site, aproveite-a!\" ".$entry.":".$qty." ";
 
-                if ($error = sendRA($command, $rank_user, $rank_pass, $host, $ra_port))
+                if ($error = sendSoap($command, $rank_user, $rank_pass, $host, $soap_port))
                 {
                     echo 'Problemas de conexão...Abortando | Erro: '.$error;
                     exit;
@@ -196,6 +197,7 @@ if($_POST['action']=='checkout')
 
     connect::selectDB('webdb');
     require('../misc/ra.php');
+    require('../misc/soap.php');
     process_cart('donate', $values[0], $character, $accountID, $realm);
     process_cart('vote', $values[0], $character, $accountID, $realm);
     echo TRUE;
