@@ -17,7 +17,7 @@ class connect {
 		 if(static::$connectedTo != 'global')
 		 {
 			 if (!mysql_connect($GLOBALS['connection']['host'],$GLOBALS['connection']['user'],$GLOBALS['connection']['password']))
-				 buildError("<b>Erro de conexão com o Banco de Dados:</b> Não foi possível estabelecer uma conexão. Erro: ".mysql_error(),NULL);
+				 buildError("Erro de conexão com o Banco de Dados: Não foi possível estabelecer uma conexão. Erro: ".mysql_error(),NULL);
 			 static::$connectedTo = 'global';
 		 }
 	 }
@@ -34,14 +34,14 @@ class connect {
 							  $GLOBALS['realms'][$realmid]['mysql_user'],
 							  $GLOBALS['realms'][$realmid]['mysql_pass'])
 							  or 
-							  buildError("<b>Erro de conexão com o Banco de Dados:</b> A conexão não pode ser estabelecida com o Reino. Erro: ".mysql_error(),NULL);
+							  buildError("Erro de conexão com o Banco de Dados: A conexão não pode ser estabelecida com o Reino. Erro: ".mysql_error(),NULL);
 			}
 			else
 			{
                 static::connectToDB();
 			}
 			mysql_select_db($GLOBALS['realms'][$realmid]['chardb'])or 
-			buildError("<b>Erro de seleção do Banco de Dados:</b> O Reino não foi selecionado no Banco de Dados. Erro: ".mysql_error(),NULL);
+			buildError("Erro de seleção do Banco de Dados: O Reino não foi selecionado no Banco de Dados. Erro: ".mysql_error(),NULL);
             static::$connectedTo = 'chardb';
 
 	}

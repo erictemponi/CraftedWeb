@@ -69,7 +69,7 @@ if(isset($_POST['serverStatus']))
 			   $num++;
 		   }
 		   if ($num == 0) {
-			 buildError("<b>Nenhum reino encontrado: </b> Por favor, configure seu Banco de Dados e adicione um reino!",NULL);  
+			 buildError("Nenhum reino encontrado: Por favor, configure seu Banco de Dados e adicione um reino!",NULL);  
 			 echo "Nenhum reino encontrado.";
 		   }
 		unset($num);
