@@ -12,15 +12,16 @@ class connect {
 	
 	public static $connectedTo = NULL;
 
-     public static function connectToDB() 
-	 {
-		 if(static::$connectedTo != 'global')
-		 {
-			 if (!mysql_connect($GLOBALS['connection']['host'],$GLOBALS['connection']['user'],$GLOBALS['connection']['password']))
-				 buildError("Erro de conexão com o Banco de Dados: Não foi possível estabelecer uma conexão. Erro: ".mysql_error(),NULL);
-			 static::$connectedTo = 'global';
-		 }
-	 }
+    public static function connectToDB() 
+	{
+		if(static::$connectedTo != 'global')
+		{
+			if (!mysql_connect($GLOBALS['connection']['host'],$GLOBALS['connection']['user'],$GLOBALS['connection']['password']))
+				buildError("Erro de conexão com o Banco de Dados: Não foi possível estabelecer uma conexão. Erro: ".mysql_error(),NULL);
+			else
+				static::$connectedTo = 'global';
+		}
+	}
 	 
 	public static function connectToRealmDB($realmid) 
 	{
@@ -40,39 +41,40 @@ class connect {
 			{
                 static::connectToDB();
 			}
-			mysql_select_db($GLOBALS['realms'][$realmid]['chardb'])or 
+			mysql_select_db($GLOBALS['realms'][$realmid]['chardb']) or 
 			buildError("Erro de seleção do Banco de Dados: O Reino não foi selecionado no Banco de Dados. Erro: ".mysql_error(),NULL);
             static::$connectedTo = 'chardb';
 
 	}
 	 
 	 
-	 public static function selectDB($db) 
-	 {
-         static::connectToDB();
-		 
-		 switch($db) {
-			default: 
-				mysql_select_db($db);
-			break;
+	public static function selectDB($db) 
+	{
+		static::connectToDB();
+		
+		switch($db)
+		{
 			case('logondb'):
 				mysql_select_db($GLOBALS['connection']['logondb']);
-			break;
+				break;
 			case('webdb'):
 				mysql_select_db($GLOBALS['connection']['webdb']);
-			break;
+				break;
 			case('worlddb'):
 				mysql_select_db($GLOBALS['connection']['worlddb']);
-			break;
-		 }
-		 
-		 mysql_query("SET NAMES 'utf8'");
-		 mysql_query('SET character_set_connection=utf8');
-		 mysql_query('SET character_set_client=utf8');
-		 mysql_query('SET character_set_results=utf8');
-		 
-			 return TRUE;
-	 }
+				break;
+			default: 
+				mysql_select_db($db);
+				break;
+		}
+		
+		mysql_query("SET NAMES 'utf8'");
+		mysql_query('SET character_set_connection=utf8');
+		mysql_query('SET character_set_client=utf8');
+		mysql_query('SET character_set_results=utf8');
+		
+		return TRUE;
+	}
 }
 
     /*************************/
@@ -83,11 +85,14 @@ class connect {
 
     connect::selectDB('webdb');
 
-$getRealms = mysql_query("SELECT * FROM realms ORDER BY id ASC");
-  while($row = mysql_fetch_assoc($getRealms))
-  {
-    $realms[$row['id']] = $row;
-    $realms[$row['id']]['chardb'] = $row['char_db'];
+	$getRealms = mysql_query("SELECT * FROM realms ORDER BY id ASC");
+	while($row = mysql_fetch_assoc($getRealms))
+	{
+		$realms[$row['id']] = $row;
+		$realms[$row['id']]['mysql_host'] = $row['mysql_host'];
+		$realms[$row['id']]['mysql_user'] = $row['mysql_user'];
+		$realms[$row['id']]['mysql_pass'] = $row['mysql_pass'];
+		$realms[$row['id']]['chardb']	  = $row['char_db'];
     }
 
      //Service prices
