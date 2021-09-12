@@ -6,6 +6,8 @@
             |_____|_|_|_|___|____/|___|\_/|___|
      Copyright (C) 2013 EmuDevs <http://www.emudevs.com/>
  */
+ 
+ require_once "random_compat-2.0.20/lib/random.php";
 
 ##############
 ##  Account functions goes here
@@ -32,11 +34,15 @@ class account {
 			else
 			{
 				if($remember!=835727313)
-					$password = sha1("".$username.":".$password."");
+				{
+					$data = mysql_query("SELECT salt, verifier FROM account WHERE username = '".$username."'");
+					$data = mysql_fetch_assoc($data);
+					$salt = $data['salt'];
+					$verifier = $data['verifier'];
+				}
 
-				$result = mysql_query("SELECT id FROM account WHERE username='".$username."' AND sha_pass_hash='".$password."'");
-				if (mysql_num_rows($result)==0)
-					echo '<span class="red_text">Senha errada.</span>';
+				if (!account::verifySRP6($username, $password, $salt, $verifier))
+					echo '<span class="red_text">Senha incorreta.</span>';
 				else
 				{
 					if($remember=='on')
@@ -98,7 +104,65 @@ class account {
 		header('Location: '.$last_page);
 		exit();
 	}
+	
+	
+	###############################
+	####### SRP6 methods
+	###############################
+	public function calculateSRP6Verifier($username, $password, $salt)
+    {
+        // algorithm constants
+        $g = gmp_init(7);
+        $N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
 
+        // calculate first hash
+        $h1 = sha1(strtoupper($username . ':' . $password), TRUE);
+
+        // calculate second hash
+        $h2 = sha1($salt.$h1, TRUE);
+
+        // convert to integer (little-endian)
+        $h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
+
+        // g^h2 mod N
+        $verifier = gmp_powm($g, $h2, $N);
+
+        // convert back to a byte array (little-endian)
+        $verifier = gmp_export($verifier, 1, GMP_LSW_FIRST);
+
+        // pad to 32 bytes, remember that zeros go on the end in little-endian!
+        $verifier = str_pad($verifier, 32, chr(0), STR_PAD_RIGHT);
+
+        // done!
+        return $verifier;
+    }
+
+    // Returns SRP6 parameters to register this username/password combination with
+    public function getRegistrationData($username, $password)
+    {
+        // generate a random salt
+        $salt = random_bytes(32);
+
+        // calculate verifier using this salt
+        $verifier = account::calculateSRP6Verifier($username, $password, $salt);
+
+        // done - this is what you put in the account table!
+        return array($salt, $verifier);
+    }
+
+    public function verifySRP6($user, $pass, $salt, $verifier)
+    {
+        $g = gmp_init(7);
+        $N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
+        $x = gmp_import(
+            sha1($salt . sha1(strtoupper($user . ':' . $pass), TRUE), TRUE),
+            1,
+            GMP_LSW_FIRST
+        );
+        $v = gmp_powm($g, $x, $N);
+        return ($verifier === str_pad(gmp_export($v, 1, GMP_LSW_FIRST), 32, chr(0), STR_PAD_RIGHT));
+    }
+	
 
 	###############################
 	####### Registration method
@@ -175,9 +239,12 @@ class account {
 		}
 		else
 		{
-			$password = sha1("".$username.":".$password."");
-			mysql_query("INSERT INTO account (username,email,sha_pass_hash,joindate,expansion,recruiter)
-			VALUES('".$username."','".$email."','".$password."','".date("Y-m-d H:i:s")."','".$GLOBALS['core_expansion']."','".$raf."') ");
+			$data = account::getRegistrationData($username, $password);
+			$salt = $data[0];
+			$verifier = $data[1];
+			
+			mysql_query("INSERT INTO account (username, salt, verifier, email, joindate, expansion, recruiter)
+			VALUES('".$username."', '".$salt."', '".$verifier."', '".$email."', '".date("Y-m-d H:i:s")."', '".$GLOBALS['core_expansion']."', '".$raf."') ");
 
 			$getID = mysql_query("SELECT id FROM account WHERE username='".$username."'");
 			$row = mysql_fetch_assoc($getID);
@@ -465,9 +532,8 @@ class account {
 	}
 
 
-	public static function changeEmail($email,$current_pass)
+	public static function changeEmail($email, $current_pass)
 	{
-
 		$errors = array();
 		if (empty($current_pass))
 			$errors[] = 'Por favor, insira sua Senha atual';
@@ -481,10 +547,12 @@ class account {
 			$username = mysql_real_escape_string(trim(strtoupper($_SESSION['cw_user'])));
 			$password = mysql_real_escape_string(trim(strtoupper($current_pass)));
 
-			$password = sha1("".$username.":".$password."");
-
-			$result = mysql_query("SELECT COUNT(id) FROM account WHERE id='".$id."' AND sha_pass_hash='".$password."'");
-			if (mysql_result($result,0)==0)
+			$data = mysql_query("SELECT salt, verifier FROM account WHERE username = '".$username."'");
+			$data = mysql_fetch_assoc($data);
+			$salt = $data['salt'];
+			$verifier = $data['verifier'];
+			
+			if (!account::verifySRP6($username, $password, $salt, $verifier))
 				$errors[] = 'A Senha atual está incorreta.';
 
 
@@ -498,7 +566,7 @@ class account {
         echo '<div class="news" style="padding: 5px;">';
 		if(empty($errors))
         {
-            mysql_query("UPDATE account SET email='".$email."' WHERE id='".$_SESSION['cw_user_id']."'");
+            mysql_query("UPDATE account SET email = '".$email."' WHERE username = '".$username."'");
 			echo '<h4 class="green_text">A sua Conta foi atualizada com sucesso</h4>';
         }
 		else
@@ -523,42 +591,40 @@ class account {
 			echo '<b class="red_text">Por favor, insira todos os campos!</b>';
 	    else
 		{
-            $_POST['cur_pass']=mysql_real_escape_string(trim($old));
-            $_POST['new_pass']=mysql_real_escape_string(trim($new));
-            $_POST['new_pass_repeat']=mysql_real_escape_string(trim($new_repeat));
+            $old = mysql_real_escape_string(trim($old));
+            $new = mysql_real_escape_string(trim($new));
+            $new_repeat = mysql_real_escape_string(trim($new_repeat));
 
 			//Check if new passwords match?
-			if ($_POST['new_pass'] != $_POST['new_pass_repeat'])
+			if ($new != $new_repeat)
 				echo '<b class="red_text">As novas Senhas não coincidem!</b>';
 			else
 			{
-			  if (strlen($_POST['new_pass']) < $GLOBALS['registration']['passMinLength'] ||
-			      strlen($_POST['new_pass']) > $GLOBALS['registration']['passMaxLength'])
-				  echo '<b class="red_text">Sua Senha deve ter entre 6 e 32 letras e/ou números.</b>';
+			  if (strlen($new) < $GLOBALS['registration']['passMinLength'] ||
+			      strlen($new) > $GLOBALS['registration']['passMaxLength'])
+				  echo '<b class="red_text">Sua Senha deve ter entre '.$GLOBALS['registration']['passMinLength'].' e '.$GLOBALS['registration']['passMaxLength'].' letras e/ou números.</b>';
 			  else
-			  {
+			  {					
 				//Lets check if the old password is correct!
-				$username = strtoupper(mysql_real_escape_string($_SESSION['cw_user']));
+				$username = strtoupper(mysql_real_escape_string(trim($_SESSION['cw_user'])));
 				connect::selectDB('logondb');
-				$getPass = mysql_query("SELECT `sha_pass_hash` FROM `account` WHERE `id`='".$_SESSION['cw_user_id']."'");
-				$row = mysql_fetch_assoc($getPass);
-				$thePass = strtoupper($row['sha_pass_hash']);
+				$data = mysql_query("SELECT salt, verifier FROM account WHERE username = '".$username."'");
+				$data = mysql_fetch_assoc($data);
+				$salt = $data['salt'];
+				$verifier = $data['verifier'];
 
-				$pass = mysql_real_escape_string(strtoupper($_POST['cur_pass']));
-				$pass_hash = strtoupper(sha1($username.':'.$pass));
-
-				$new_pass = mysql_real_escape_string(strtoupper($_POST['new_pass']));
-				$new_pass_hash = sha1($username.':'.$new_pass);
-
-				if ($thePass != $pass_hash)
+				if (!account::verifySRP6($username, $old, $salt, $verifier))
 					echo '<b class="red_text">A Senha atual está incorreta!</b>';
 				else
 				{
 					//success, change password
+					$data2 = account::getRegistrationData($username, $new);
+					$salt2 = $data2[0];
+					$verifier2 = $data2[1];
+					mysql_query("UPDATE account SET salt = '".$salt2."', verifier = '".$verifier2."' WHERE username = '".$username."'");
 					echo 'Sua Senha foi alterada!';
                     if (isset($_COOKIE['cw_rememberMe']))
-                        setcookie("cw_rememberMe", $username.' * '.$new_pass, time()+30758400);
-					mysql_query("UPDATE account SET sha_pass_hash='".$new_pass_hash."', v='0', s='0' WHERE id='".$_SESSION['cw_user_id']."'");
+                        setcookie("cw_rememberMe", $username.' * '.$new, time()+30758400);
 				}
 			}
 		  }
