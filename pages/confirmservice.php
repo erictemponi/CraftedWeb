@@ -120,8 +120,8 @@ elseif($GLOBALS['service'][$service]['currency']=="dp")
                 </td>
             </tr>                         
 	</table>
-    </div> 
-    <p/>&nbsp;
+    </div>
+	<br><br><br><br><br><br><br>
     <h4>Condições e Isenções de Responsabilidade</h4>
     <?php
 	echo $service_desc[$service];
