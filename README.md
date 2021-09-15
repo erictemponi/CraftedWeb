@@ -21,7 +21,7 @@ But you may NOT:
  * Note: It is suggested that you have your world, auth and website database on the same host.
          Offsite DB hosting requires remote user setup.
 
-# Installing
+## Installing
 
 **AUTOMATIC WAY TO INSTALL:**
 1. Upload all files to your desired location.
@@ -92,7 +92,7 @@ If somehow, the automatic installation does not work. Try this one.
 10. (Bonus)Open up 'documents/termsofservice.php' and 'documents/refundpolicy.php'. Enable them, and edit the file if you wish to use those.	
 
 
-# FAQ
+## FAQ
 
 * Q: I recently updated the core files for my website, and the site tells me I have a mismatch between the databse & core.
 * A: Make sure you have loaded all SQL update files found in "sql/updates". You obviously havent updated to the latest database revision.
