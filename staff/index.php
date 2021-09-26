@@ -15,7 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $GLOBALS['website_title']; ?> Painel da Equipe</title>
+<title><?php echo $GLOBALS['website_title']; ?> | Painel da Equipe</title>
 <link rel="stylesheet" href="../aasp_includes/styles/default/style.css" />
 <link rel="stylesheet" href="../aasp_includes/styles/wysiwyg.css" />
 <script type="text/javascript" src="../javascript/jquery.js"></script>
