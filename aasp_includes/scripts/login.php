@@ -32,8 +32,8 @@ if(isset($_POST['login']))
 	if (!account::verifySRP6($username, $password, $salt, $verifier))
 		die("Combinação de Nome de Usuário/Senha inválida.");
 	
-	$result = mysql_query("SELECT gmlevel FROM account_access WHERE id='".$uid."' 
-	AND gmlevel >= '".$GLOBALS[$_POST['panel'].'Panel_minlvl']."'");
+	$result = mysql_query("SELECT SecurityLevel FROM account_access WHERE AccountID='".$uid."' 
+	AND SecurityLevel >= '".$GLOBALS[$_POST['panel'].'Panel_minlvl']."'");
 	
 	if(mysql_num_rows($result)==0)
 		die("A conta especificada não tem acesso a essa área!");
@@ -42,7 +42,7 @@ if(isset($_POST['login']))
 	
 	$_SESSION['cw_'.$_POST['panel']]=ucfirst(strtolower($username));
 	$_SESSION['cw_'.$_POST['panel'].'_id']=$uid;
-	$_SESSION['cw_'.$_POST['panel'].'_level']=$rank['gmlevel'];
+	$_SESSION['cw_'.$_POST['panel'].'_level']=$rank['SecurityLevel'];
 	
 	if(empty($_SESSION['cw_'.$_POST['panel']]) || empty($_SESSION['cw_'.$_POST['panel'].'_id'])
 	|| empty($_SESSION['cw_'.$_POST['panel'].'_level']))

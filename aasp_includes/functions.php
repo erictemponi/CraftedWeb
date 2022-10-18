@@ -77,7 +77,7 @@ class server
 		$result = mysql_query("SELECT host,port FROM realms WHERE id='".(int)$rid."'");
 		$row = mysql_fetch_assoc($result);
 		
-		$fp = fsockopen($row['host'], $row['port'], $errno, $errstr, 1);
+		$fp = fsockopen($row['host'], $row['port'], $errno, $errstr, 2);
 		if (!$fp) 
 		   return '<font color="#990000">Offline</font>';
 		else 
@@ -87,8 +87,8 @@ class server
 	public function getGMSOnline() 
 	{
 		$this->selectDB('logondb');
-		$result = mysql_query("SELECT COUNT(id) FROM account WHERE username IN ( select username FROM account WHERE online IN ('1')) 
-		AND id IN (SELECT id FROM account_access WHERE gmlevel>'1');");
+		$result = mysql_query("SELECT COUNT(id) FROM account WHERE username IN (select username FROM account WHERE online IN ('1')) 
+		AND id IN (SELECT AccountID FROM account_access WHERE SecurityLevel>'1');");
 		
 		return mysql_result($result,0);
 	}
