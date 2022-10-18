@@ -49,6 +49,7 @@ class account {
 						setcookie("cw_rememberMe", $username.' * '.$password, time()+30758400);
 						//Set "Lembrar de mim" cookie. Expira em 1 ano.
 
+					$result = mysql_query("SELECT id FROM account WHERE username='".$username."'");
 					$id = mysql_fetch_assoc($result);
 					$id = $id['id'];
 
@@ -500,11 +501,11 @@ class account {
 		connect::selectDB('logondb');
 		$acct_id = self::getAccountID($account_name);
 
-		$result = mysql_query("SELECT gmlevel FROM account_access WHERE gmlevel > 2 AND id=".$acct_id);
+		$result = mysql_query("SELECT SecurityLevel FROM account_access WHERE SecurityLevel > 2 AND AccountID=".$acct_id);
 		if(mysql_num_rows($result)>0)
 		{
 			$row = mysql_fetch_assoc($result);
-			$_SESSION['cw_gmlevel']=$row['gmlevel'];
+			$_SESSION['cw_gmlevel']=$row['SecurityLevel'];
 		}
 
 	}
@@ -789,7 +790,7 @@ class account {
 		public static function isGM($account_name)
 		{
 	         $account_id = self::getAccountID($account_name);
-			 $result = mysql_query("SELECT COUNT(id) FROM account_access WHERE id='".$account_id."' AND gmlevel >= 1");
+			 $result = mysql_query("SELECT COUNT(id) FROM account_access WHERE AccountID='".$account_id."' AND SecurityLevel >= 1");
 			 if (mysql_result($result,0)>0)
 				 return TRUE;
 			 else
