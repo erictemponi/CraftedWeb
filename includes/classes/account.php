@@ -690,7 +690,7 @@ class account {
 
 				<br/><br/>
 
-				Se você não solicitou isso, basta ignorar e deletar essa mensagem.<br/><br/>
+				Se você não solicitou isso, basta ignorar e deletar esta mensagem.<br/><br/>
 				Atenciosamente, Administração.");
                 if ($emailSent)
                 {

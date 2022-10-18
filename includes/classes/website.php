@@ -191,13 +191,14 @@ class website {
 
 	public static function sendEmail($to,$from,$subject,$body)
 	{
-		$headers  = 'Versão-MIME: 1.0' . "\r\n";
-        $headers .= 'Tipo-de-Conteúdo: text/html; charset=iso-8859-1' . "\r\n";
-		$headers .= 'De: '.$from . "\r\n";
-
-		if (!mail($to,$subject,$body,$headers))
-            return false;
-        return true;
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'From: '.$from . "\r\n";
+		
+		if (mail($to,$subject,$body,$headers)) {
+			return true;
+		}
+		return false;
 	}
 
 	public static function convertCurrency($currency)

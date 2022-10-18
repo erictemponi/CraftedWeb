@@ -260,7 +260,7 @@ $config = '<?php
 	
 	
 	/*************************/
-	/* mySQL connection settings
+	/* MySQL connection settings
 	/*************************/
 	
 	$connection[\'host\'] = \''.$_SESSION['install']['database']['host'].':'.$_SESSION['install']['database']['port'].'\';
